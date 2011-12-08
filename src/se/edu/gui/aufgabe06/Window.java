@@ -10,7 +10,9 @@
  */
 package se.edu.gui.aufgabe06;
 
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -122,7 +124,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(lblBestellnummer, gridBagConstraints);
 
-        tfBestellnummer.setText("jTextField1");
+        tfBestellnummer.setDocument(new DigetDocument());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
@@ -136,7 +138,13 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(lblJahrgang, gridBagConstraints);
 
-        tfJahrgang.setText("jTextField2");
+        tfJahrgang.setDocument(new DigetDocument());
+        tfJahrgang.setInputVerifier(new JahrgangVerifyer());
+        tfJahrgang.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                verifyContent(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -151,8 +159,6 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(lblName, gridBagConstraints);
-
-        tfName.setText("jTextField3");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -235,7 +241,8 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(lblAlkoholgehalt, gridBagConstraints);
 
-        tfAlkoholgehalt.setText("jTextField1");
+        tfAlkoholgehalt.setDocument(new AlkgehaltDocument());
+        tfAlkoholgehalt.setInputVerifier(new AlkgehaltVerifyer());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -251,7 +258,8 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(lblLagerfaehigkeit, gridBagConstraints);
 
-        tfLagerfaehigkeit.setText("jTextField2");
+        tfLagerfaehigkeit.setDocument(new DigetDocument());
+        tfLagerfaehigkeit.setInputVerifier(new LagerfaehigkeitVerifyer());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -283,7 +291,8 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(lblFlaschenpreis, gridBagConstraints);
 
-        tfFlaschenpreis.setText("jTextField4");
+        tfFlaschenpreis.setDocument(new AlkgehaltDocument());
+        tfFlaschenpreis.setInputVerifier(new PreisVerifier());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
@@ -299,11 +308,11 @@ public class Window extends javax.swing.JFrame {
         panelWeinIrgendwas.setLayout(panelWeinIrgendwasLayout);
         panelWeinIrgendwasLayout.setHorizontalGroup(
             panelWeinIrgendwasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
+            .addGap(0, 415, Short.MAX_VALUE)
         );
         panelWeinIrgendwasLayout.setVerticalGroup(
             panelWeinIrgendwasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 481, Short.MAX_VALUE)
+            .addGap(0, 541, Short.MAX_VALUE)
         );
 
         ifWeinTabbedPanel.addTab("...", panelWeinIrgendwas);
@@ -311,7 +320,7 @@ public class Window extends javax.swing.JFrame {
         ifWein.getContentPane().add(ifWeinTabbedPanel);
 
         getContentPane().add(ifWein);
-        ifWein.setBounds(0, 0, 420, 540);
+        ifWein.setBounds(0, 0, 430, 600);
 
         mDatei.setMnemonic('D');
         mDatei.setText("Datei");
@@ -424,6 +433,12 @@ public class Window extends javax.swing.JFrame {
         if(JOptionPane.showConfirmDialog(this, "Wollen Sie wirklich Beenden?", "Beenden?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION)
             System.exit(0);
     }//GEN-LAST:event_formWindowClosing
+
+    private void verifyContent(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_verifyContent
+        if (!((JTextField)(evt.getSource())).getInputVerifier().verify(((JTextField)(evt.getSource())))) {
+            System.out.println("mööp");
+        }
+    }//GEN-LAST:event_verifyContent
 
     /**
      * @param args the command line arguments
