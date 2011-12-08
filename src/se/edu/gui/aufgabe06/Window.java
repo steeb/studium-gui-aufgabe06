@@ -79,6 +79,11 @@ public class Window extends javax.swing.JFrame {
         mHilfeInfo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         ifKunde.setClosable(true);
@@ -107,7 +112,7 @@ public class Window extends javax.swing.JFrame {
         ifWein.setResizable(true);
         ifWein.setTitle("Wein anlegen");
         ifWein.setVisible(true);
-        ifWein.getContentPane().setLayout(new java.awt.GridLayout());
+        ifWein.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         panelWeinAnlegen.setLayout(new java.awt.GridBagLayout());
 
@@ -400,7 +405,7 @@ public class Window extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mDateiBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDateiBeendenActionPerformed
-        System.exit(0);
+        this.formWindowClosing(null);
     }//GEN-LAST:event_mDateiBeendenActionPerformed
 
     private void mHilfeInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mHilfeInfoActionPerformed
@@ -414,6 +419,11 @@ public class Window extends javax.swing.JFrame {
     private void mBearbeitenWeinAufnehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBearbeitenWeinAufnehmenActionPerformed
         ifWein.setVisible(true);
     }//GEN-LAST:event_mBearbeitenWeinAufnehmenActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if(JOptionPane.showConfirmDialog(this, "Wollen Sie wirklich Beenden?", "Beenden?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION)
+            System.exit(0);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
