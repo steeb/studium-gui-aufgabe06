@@ -10,7 +10,6 @@
  */
 package se.edu.gui.aufgabe06;
 
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -19,6 +18,8 @@ import javax.swing.JTextField;
  * @author steeb
  */
 public class Window extends javax.swing.JFrame {
+    
+    ChangeListener aenderung = new ChangeListener();
 
     /** Creates new form Window */
     public Window() {
@@ -64,6 +65,8 @@ public class Window extends javax.swing.JFrame {
         cbFlaschengroese = new javax.swing.JComboBox();
         lblFlaschenpreis = new javax.swing.JLabel();
         tfFlaschenpreis = new javax.swing.JTextField();
+        btnSpeichern = new javax.swing.JButton();
+        btnAbbrechen = new javax.swing.JButton();
         panelWeinIrgendwas = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         mDatei = new javax.swing.JMenu();
@@ -125,6 +128,7 @@ public class Window extends javax.swing.JFrame {
         panelWeinAnlegen.add(lblBestellnummer, gridBagConstraints);
 
         tfBestellnummer.setDocument(new DigetDocument());
+        tfBestellnummer.getDocument().addDocumentListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
@@ -145,6 +149,7 @@ public class Window extends javax.swing.JFrame {
                 verifyContent(evt);
             }
         });
+        tfJahrgang.getDocument().addDocumentListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -159,6 +164,8 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(lblName, gridBagConstraints);
+
+        tfName.getDocument().addDocumentListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -175,7 +182,9 @@ public class Window extends javax.swing.JFrame {
         panelWeinAnlegen.add(lblFarbe, gridBagConstraints);
 
         buttonGroupFarbe.add(rbFarbeWeiß);
+        rbFarbeWeiß.setSelected(true);
         rbFarbeWeiß.setText("weiß");
+        rbFarbeWeiß.addChangeListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -185,6 +194,7 @@ public class Window extends javax.swing.JFrame {
 
         buttonGroupFarbe.add(rbFarbeRot);
         rbFarbeRot.setText("rot");
+        rbFarbeRot.addChangeListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -194,6 +204,7 @@ public class Window extends javax.swing.JFrame {
 
         buttonGroupFarbe.add(rbFarbeRose);
         rbFarbeRose.setText("rose");
+        rbFarbeRose.addChangeListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -210,6 +221,7 @@ public class Window extends javax.swing.JFrame {
         panelWeinAnlegen.add(lblRebsorte, gridBagConstraints);
 
         cbRebsorte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbRebsorte.addItemListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -227,6 +239,7 @@ public class Window extends javax.swing.JFrame {
 
         cbAnbaugebiet.setEditable(true);
         cbAnbaugebiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbAnbaugebiet.addItemListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -243,6 +256,7 @@ public class Window extends javax.swing.JFrame {
 
         tfAlkoholgehalt.setDocument(new AlkgehaltDocument());
         tfAlkoholgehalt.setInputVerifier(new AlkgehaltVerifyer());
+        tfAlkoholgehalt.getDocument().addDocumentListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -260,6 +274,7 @@ public class Window extends javax.swing.JFrame {
 
         tfLagerfaehigkeit.setDocument(new DigetDocument());
         tfLagerfaehigkeit.setInputVerifier(new LagerfaehigkeitVerifyer());
+        tfLagerfaehigkeit.getDocument().addDocumentListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -276,6 +291,7 @@ public class Window extends javax.swing.JFrame {
         panelWeinAnlegen.add(lblFlaschengroesse, gridBagConstraints);
 
         cbFlaschengroese.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFlaschengroese.addItemListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
@@ -293,12 +309,39 @@ public class Window extends javax.swing.JFrame {
 
         tfFlaschenpreis.setDocument(new AlkgehaltDocument());
         tfFlaschenpreis.setInputVerifier(new PreisVerifier());
+        tfFlaschenpreis.getDocument().addDocumentListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(tfFlaschenpreis, gridBagConstraints);
+
+        btnSpeichern.setText("Speichern");
+        btnSpeichern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSpeichernActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(30, 10, 10, 0);
+        panelWeinAnlegen.add(btnSpeichern, gridBagConstraints);
+
+        btnAbbrechen.setText("Abbrechen");
+        btnAbbrechen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbbrechenActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(30, 10, 10, 10);
+        panelWeinAnlegen.add(btnAbbrechen, gridBagConstraints);
 
         scrollPaneWeinAnlegen.setViewportView(panelWeinAnlegen);
 
@@ -426,6 +469,7 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_mBearbeitenKundenAufnehmenActionPerformed
 
     private void mBearbeitenWeinAufnehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBearbeitenWeinAufnehmenActionPerformed
+        aenderung.reset();
         ifWein.setVisible(true);
     }//GEN-LAST:event_mBearbeitenWeinAufnehmenActionPerformed
 
@@ -440,6 +484,81 @@ public class Window extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_verifyContent
 
+    private void btnAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbbrechenActionPerformed
+        if(aenderung.hasChanged())
+            if(JOptionPane.showConfirmDialog(this, "Wollen Sie wirklich Abbrechen?", "Abbrechen?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION)
+                return;
+        this.ifWein.dispose();
+        this.cleanAll();
+    }//GEN-LAST:event_btnAbbrechenActionPerformed
+
+    private void btnSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpeichernActionPerformed
+        if (tfBestellnummer.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Bestellnummer bitte korrekt ausfüllen.");
+            tfBestellnummer.requestFocus();
+            return;
+        }
+        if (tfJahrgang.getText().equals("") || !tfJahrgang.getInputVerifier().verify(tfJahrgang)) {
+            JOptionPane.showMessageDialog(this, "Jahrgang bitte korrekt ausfüllen.");
+            tfJahrgang.requestFocus();
+            return;
+        }
+        if (tfName.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Name bitte korrekt ausfüllen.");
+            tfName.requestFocus();
+            return;
+        }
+        /*if (buttonGroupFarbe.getSelection().isSelected()) {
+            JOptionPane.showMessageDialog(this, "Farbe bitte korrekt wählen.");
+            buttonGroupFarbe.
+            return;
+        }*/
+        if (tfAlkoholgehalt.getText().equals("") || !tfAlkoholgehalt.getInputVerifier().verify(tfAlkoholgehalt)) {
+            JOptionPane.showMessageDialog(this, "Alkoholgehalt bitte korrekt ausfüllen.");
+            tfAlkoholgehalt.requestFocus();
+            return;
+        }
+        if (tfLagerfaehigkeit.getText().equals("") || !tfLagerfaehigkeit.getInputVerifier().verify(tfLagerfaehigkeit)) {
+            JOptionPane.showMessageDialog(this, "Lagerfähigkeit bitte korrekt ausfüllen.");
+            tfLagerfaehigkeit.requestFocus();
+            return;
+        }
+        if (tfFlaschenpreis.getText().equals("") || !tfFlaschenpreis.getInputVerifier().verify(tfFlaschenpreis)) {
+            JOptionPane.showMessageDialog(this, "Flaschenpreis bitte korrekt ausfüllen.");
+            tfFlaschenpreis.requestFocus();
+            return;
+        }
+        this.save();
+        this.ifWein.dispose();
+        this.cleanAll();
+    }//GEN-LAST:event_btnSpeichernActionPerformed
+
+    private void save(){
+        System.out.println("Bestellnummer: " + tfBestellnummer.getText()
+                + "\nJahrgang: " + tfJahrgang.getText()
+                + "\nName: " + tfName.getText()
+                //TODO
+                + "\nFarbe: " + buttonGroupFarbe.getSelection()
+                + "\nRebsorte: " + cbRebsorte.getSelectedItem().toString()
+                + "\nAnbaugebiet: " + cbAnbaugebiet.getSelectedItem().toString()
+                + "\nAlkoholgehalt: " + tfAlkoholgehalt.getText()
+                + "\nLagerfähigkeit: " + tfLagerfaehigkeit.getText()
+                + "\nFlaschengröße: " + cbFlaschengroese.getSelectedItem().toString()
+                + "\nFlaschenpreis: " + tfFlaschenpreis.getText());
+    }
+    
+    private void cleanAll() {
+        tfAlkoholgehalt.setText("");
+        tfBestellnummer.setText("");
+        tfFlaschenpreis.setText("");
+        tfJahrgang.setText("");
+        tfLagerfaehigkeit.setText("");
+        tfName.setText("");
+        cbRebsorte.setSelectedIndex(0);
+        cbAnbaugebiet.setSelectedIndex(0);
+        cbFlaschengroese.setSelectedIndex(0);
+        buttonGroupFarbe.clearSelection();
+    }
     /**
      * @param args the command line arguments
      */
@@ -476,6 +595,8 @@ public class Window extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbbrechen;
+    private javax.swing.JButton btnSpeichern;
     private javax.swing.ButtonGroup buttonGroupFarbe;
     private javax.swing.JComboBox cbAnbaugebiet;
     private javax.swing.JComboBox cbFlaschengroese;
