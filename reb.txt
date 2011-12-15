@@ -1,0 +1,100 @@
+weiss
+-Albariño
+-Bacchus
+-Blanc de Blancs
+-Blanc de Noirs
+-Blauer Silvaner
+-Chablis
+-Chardonnay
+-Chasselas
+-Chenin Blanc
+-Edelzwicker
+-Elbling
+-Falerner
+-Fendant
+-Frascati
+-Gelber Orleans
+-Gewürztraminer
+-Gletscherwein
+-Grauer Burgunder
+-Grüner Silvaner
+-Grüner Veltliner
+-Gutedel
+-Hochgewächs
+-Huxelrebe
+-Kerner
+-Klevner
+-Macabeo
+-Morio-Muskat
+-Müller-Thurgau
+-Muskateller
+-Neuburger
+-Nobling
+-Parellada
+-Pinot Blanc
+-Retsina
+-Riesling
+-Rivaner
+-Rotgipfler
+-Roter Riesling
+-Ruländer
+-Sauvignon Blanc
+-Scheurebe
+-Siegerrebe
+-Silvaner
+-Soave
+-Tokajer
+-Traminer
+-Vinho Verde
+-Viura
+-Weißburgunder
+-Weißer Riesling
+-Welschriesling
+-Zweigelt
+
+rot
+-Bardolino
+-Beaujolais
+-Blaufränkisch
+-Cabernet Franc
+-Cabernet Sauvignon
+-Chambourcin
+-Chianti
+-Dolcetto
+-Dornfelder
+-Edelvernatsch
+-Gamay
+-Grauvernatsch
+-Grenache
+-Großvernatsch
+-Helfensteiner
+-Heroldrebe
+-Kleinvernatsch
+-Lagrein
+-Lemberger
+-Malbec
+-Merlot
+-Mittervernatsch
+-Pinotage
+-Pinot Noir
+-Regent
+-Samtrot
+-Schwarzriesling
+-Shiraz
+-Spätburgunder
+-Syrah
+-Vernatsch
+-Tempranillo
+-Trollinger
+-Tschaggelevernatsch
+-Ull de Llebre
+-Valpolicella
+-Zinfandel
+
+rose
+-Badisch Rotgold
+-Heckenklescher
+-Rotling
+-Schilcher
+-Schillerwein
+-Uhudler

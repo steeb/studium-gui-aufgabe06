@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.edu.gui.aufgabe06;
+package se.edu.gui.aufgabe06.verifyer;
 
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;

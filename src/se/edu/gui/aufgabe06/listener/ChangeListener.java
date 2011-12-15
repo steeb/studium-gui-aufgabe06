@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.edu.gui.aufgabe06;
+package se.edu.gui.aufgabe06.listener;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -14,7 +14,7 @@ import javax.swing.event.DocumentListener;
  *
  * @author steeb
  */
-class ChangeListener implements DocumentListener, ItemListener, javax.swing.event.ChangeListener{
+public class ChangeListener implements DocumentListener, ItemListener, javax.swing.event.ChangeListener{
 
     private boolean changed = false;
     
