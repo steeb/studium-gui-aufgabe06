@@ -341,7 +341,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(lblFlaschengroesse, gridBagConstraints);
 
-        cbFlaschengroese.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFlaschengroese.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0,187l", "0,25l", "0,375l", "0,5l", "0,62l", "0,75l", "0,8l", "1l", "1,5l" }));
         cbFlaschengroese.addItemListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
