@@ -82,7 +82,6 @@ public class Window extends javax.swing.JFrame {
         rbFarbeRot = new javax.swing.JRadioButton();
         rbFarbeRose = new javax.swing.JRadioButton();
         lblRebsorte = new javax.swing.JLabel();
-        cbRebsorte = new javax.swing.JComboBox();
         lblAnbaugebiet = new javax.swing.JLabel();
         cbAnbaugebiet = new javax.swing.JComboBox();
         lblAlkoholgehalt = new javax.swing.JLabel();
@@ -97,6 +96,8 @@ public class Window extends javax.swing.JFrame {
         btnAbbrechen = new javax.swing.JButton();
         lblLand = new javax.swing.JLabel();
         cbLand = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        mlRebsorte = new javax.swing.JList();
         panelWeinIrgendwas = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         mDatei = new javax.swing.JMenu();
@@ -219,7 +220,7 @@ public class Window extends javax.swing.JFrame {
                 rbFarbeWeißActionPerformed(evt);
             }
         });
-        rbFarbeWeiß.addChangeListener(aenderung);
+        rbFarbeWeiß.addItemListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -234,7 +235,7 @@ public class Window extends javax.swing.JFrame {
                 rbFarbeRotActionPerformed(evt);
             }
         });
-        rbFarbeRot.addChangeListener(aenderung);
+        rbFarbeRot.addItemListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -249,7 +250,7 @@ public class Window extends javax.swing.JFrame {
                 rbFarbeRoseActionPerformed(evt);
             }
         });
-        rbFarbeRose.addChangeListener(aenderung);
+        rbFarbeRose.addItemListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -264,15 +265,6 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(lblRebsorte, gridBagConstraints);
-
-        cbRebsorte.setModel(cbmReb);
-        cbRebsorte.addItemListener(aenderung);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        panelWeinAnlegen.add(cbRebsorte, gridBagConstraints);
 
         lblAnbaugebiet.setText("Land:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -416,6 +408,16 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(cbLand, gridBagConstraints);
+
+        mlRebsorte.setModel(cbmReb);
+        jScrollPane1.setViewportView(mlRebsorte);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        panelWeinAnlegen.add(jScrollPane1, gridBagConstraints);
 
         scrollPaneWeinAnlegen.setViewportView(panelWeinAnlegen);
 
@@ -609,19 +611,19 @@ public class Window extends javax.swing.JFrame {
 
     private void rbFarbeWeißActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbFarbeWeißActionPerformed
         cbmReb = new DefaultComboBoxModel(reb.get("weiss").toArray());
-        cbRebsorte.setModel(cbmReb);
+        mlRebsorte.setModel(cbmReb);
         farbe = "weiß";
     }//GEN-LAST:event_rbFarbeWeißActionPerformed
 
     private void rbFarbeRotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbFarbeRotActionPerformed
         cbmReb = new DefaultComboBoxModel(reb.get("rot").toArray());
-        cbRebsorte.setModel(cbmReb);
+        mlRebsorte.setModel(cbmReb);
         farbe = "rot";
     }//GEN-LAST:event_rbFarbeRotActionPerformed
 
     private void rbFarbeRoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbFarbeRoseActionPerformed
         cbmReb = new DefaultComboBoxModel(reb.get("rose").toArray());
-        cbRebsorte.setModel(cbmReb);
+        mlRebsorte.setModel(cbmReb);
         farbe = "rose";
     }//GEN-LAST:event_rbFarbeRoseActionPerformed
 
@@ -631,16 +633,23 @@ public class Window extends javax.swing.JFrame {
 
     private void cbLandItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbLandItemStateChanged
         System.out.println(cbLand.getSelectedItem().toString());
-        cbmGebiet = new DefaultComboBoxModel(loc.get(cbLand.getSelectedItem().toString()).toArray());
+        try {
+            cbmGebiet = new DefaultComboBoxModel(loc.get(cbLand.getSelectedItem().toString()).toArray());
+        } catch (NullPointerException e) {
+            cbmGebiet = new DefaultComboBoxModel();
+        }
         cbAnbaugebiet.setModel(cbmGebiet);
     }//GEN-LAST:event_cbLandItemStateChanged
 
     private void save(){
+        String tmp = "";
+        for (int i = 0; i < mlRebsorte.getSelectedValues().length; i++)
+            tmp += mlRebsorte.getSelectedValues()[i].toString();
         System.out.println("Bestellnummer: " + tfBestellnummer.getText()
                 + "\nJahrgang: " + tfJahrgang.getText()
                 + "\nName: " + tfName.getText()
                 + "\nFarbe: " + farbe
-                + "\nRebsorte: " + cbRebsorte.getSelectedItem().toString()
+                + "\nRebsorte: " + tmp
                 + "\nAnbaugebiet: " + cbAnbaugebiet.getSelectedItem().toString()
                 + "\nAlkoholgehalt: " + tfAlkoholgehalt.getText()
                 + "\nLagerfähigkeit: " + tfLagerfaehigkeit.getText()
@@ -655,7 +664,7 @@ public class Window extends javax.swing.JFrame {
         tfJahrgang.setText("");
         tfLagerfaehigkeit.setText("");
         tfName.setText("");
-        cbRebsorte.setSelectedIndex(0);
+        mlRebsorte.setModel(cbmReb);
         cbAnbaugebiet.setSelectedIndex(0);
         cbFlaschengroese.setSelectedIndex(0);
         buttonGroupFarbe.clearSelection();
@@ -702,10 +711,10 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JComboBox cbAnbaugebiet;
     private javax.swing.JComboBox cbFlaschengroese;
     private javax.swing.JComboBox cbLand;
-    private javax.swing.JComboBox cbRebsorte;
     private javax.swing.JInternalFrame ifKunde;
     private javax.swing.JInternalFrame ifWein;
     private javax.swing.JTabbedPane ifWeinTabbedPanel;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlkoholgehalt;
     private javax.swing.JLabel lblAnbaugebiet;
     private javax.swing.JLabel lblBestellnummer;
@@ -731,6 +740,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JMenu mHilfe;
     private javax.swing.JMenuItem mHilfeInfo;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JList mlRebsorte;
     private javax.swing.JPanel panelWeinAnlegen;
     private javax.swing.JPanel panelWeinIrgendwas;
     private javax.swing.JRadioButton rbFarbeRose;

@@ -6,7 +6,6 @@ package se.edu.gui.aufgabe06.listener;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -14,7 +13,7 @@ import javax.swing.event.DocumentListener;
  *
  * @author steeb
  */
-public class ChangeListener implements DocumentListener, ItemListener, javax.swing.event.ChangeListener{
+public class ChangeListener implements DocumentListener, ItemListener {
 
     private boolean changed = false;
     
@@ -29,30 +28,20 @@ public class ChangeListener implements DocumentListener, ItemListener, javax.swi
     @Override
     public void insertUpdate(DocumentEvent de) {
         this.changed = true;
-        System.out.println("changed");
     }
 
     @Override
     public void removeUpdate(DocumentEvent de) {
         this.changed = true;
-        System.out.println("changed");
     }
 
     @Override
     public void changedUpdate(DocumentEvent de) {
         this.changed = true;
-        System.out.println("changed");
     }
 
     @Override
     public void itemStateChanged(ItemEvent ie) {
         this.changed = true;
-        System.out.println("changed");
-    }
-
-    @Override
-    public void stateChanged(ChangeEvent ce) {
-        this.changed = true;
-        System.out.println("changed");
     }
 }
