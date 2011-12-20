@@ -17,10 +17,17 @@ public class JahrgangVerifyer extends InputVerifier{
 
     @Override
     public boolean verify(JComponent jc) {
+        boolean test2 = false;
         if (((JTextField)(jc)).getText().equals(""))
             return true;
         boolean test1 = ((JTextField)(jc)).getText().matches("\\d{4}");
-        boolean test2 = Integer.parseInt(((JTextField)(jc)).getText()) <= Calendar.getInstance().get(Calendar.YEAR);
+        try {
+            test2 = Integer.parseInt(((JTextField)(jc)).getText()) <= Calendar.getInstance().get(Calendar.YEAR);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+//        if (!(test1 && test2))
+//            JOptionPane.showMessageDialog(null, "test", "test", JOptionPane.OK_OPTION);
         return (test1 && test2);
     }
     

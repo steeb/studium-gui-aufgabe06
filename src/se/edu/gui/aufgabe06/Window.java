@@ -26,6 +26,7 @@ import se.edu.gui.aufgabe06.verifyer.JahrgangVerifyer;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import se.edu.gui.aufgabe06.helper.Helper;
+import se.edu.gui.aufgabe06.verifyer.VerifyAllOnSwitchingComponent;
 
 /**
  *
@@ -34,6 +35,7 @@ import se.edu.gui.aufgabe06.helper.Helper;
 public class Window extends javax.swing.JFrame {
     
     ChangeListener aenderung = new ChangeListener();
+    VerifyAllOnSwitchingComponent switchComponentenVerifyer;
     HashMap<String, List<String>> reb;
     HashMap<String, List<String>> loc;
     ComboBoxModel cbmReb;
@@ -51,7 +53,12 @@ public class Window extends javax.swing.JFrame {
         cbmLand = new DefaultComboBoxModel(sLand.toArray());
         cbmGebiet = new DefaultComboBoxModel(loc.get(loc.keySet().toArray()[0].toString()).toArray());
         farbe = "weiß";
+        switchComponentenVerifyer = new VerifyAllOnSwitchingComponent();
         initComponents();
+        switchComponentenVerifyer.addTextfield(tfJahrgang);
+        switchComponentenVerifyer.addTextfield(tfAlkoholgehalt);
+        switchComponentenVerifyer.addTextfield(tfLagerfaehigkeit);
+        switchComponentenVerifyer.addTextfield(tfFlaschenpreis);
         this.setDefaultCloseOperation(Window.EXIT_ON_CLOSE);
     }
 
@@ -149,7 +156,6 @@ public class Window extends javax.swing.JFrame {
         ifWein.setMaximizable(true);
         ifWein.setResizable(true);
         ifWein.setTitle("Wein anlegen");
-        ifWein.setVisible(true);
         ifWein.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         panelWeinAnlegen.setLayout(new java.awt.GridBagLayout());
@@ -226,6 +232,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
         rbFarbeWeiß.addItemListener(aenderung);
+        rbFarbeWeiß.addMouseListener(switchComponentenVerifyer);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -242,6 +249,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
         rbFarbeRot.addItemListener(aenderung);
+        rbFarbeRot.addMouseListener(switchComponentenVerifyer);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -258,6 +266,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
         rbFarbeRose.addItemListener(aenderung);
+        rbFarbeRose.addMouseListener(switchComponentenVerifyer);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -290,6 +299,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
         cbAnbaugebiet.addItemListener(aenderung);
+        cbAnbaugebiet.addMouseListener(switchComponentenVerifyer);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -309,6 +319,7 @@ public class Window extends javax.swing.JFrame {
         tfAlkoholgehalt.setDocument(new AlkgehaltDocument());
         tfAlkoholgehalt.setInputVerifier(new AlkgehaltVerifyer());
         tfAlkoholgehalt.getDocument().addDocumentListener(aenderung);
+        tfAlkoholgehalt.addMouseListener(switchComponentenVerifyer);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -346,6 +357,7 @@ public class Window extends javax.swing.JFrame {
 
         cbFlaschengroese.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0,187l", "0,25l", "0,375l", "0,5l", "0,62l", "0,75l", "0,8l", "1l", "1,5l" }));
         cbFlaschengroese.addItemListener(aenderung);
+        cbFlaschengroese.addMouseListener(switchComponentenVerifyer);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
@@ -418,6 +430,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
         cbAnbaugebiet.addItemListener(aenderung);
+        cbLand.addMouseListener(switchComponentenVerifyer);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -427,6 +440,7 @@ public class Window extends javax.swing.JFrame {
         panelWeinAnlegen.add(cbLand, gridBagConstraints);
 
         mlRebsorte.setModel(cbmReb);
+        mlRebsorte.addMouseListener(switchComponentenVerifyer);
         jScrollPane1.setViewportView(mlRebsorte);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

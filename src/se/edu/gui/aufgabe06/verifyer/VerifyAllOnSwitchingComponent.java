@@ -4,8 +4,8 @@
  */
 package se.edu.gui.aufgabe06.verifyer;
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  *
  * @author steeb
  */
-public class VerifyAllOnSwitchingComponent implements FocusListener {
+public class VerifyAllOnSwitchingComponent extends MouseAdapter {
     
     List<JTextField> textfields = new LinkedList<JTextField>();
     
@@ -24,18 +24,12 @@ public class VerifyAllOnSwitchingComponent implements FocusListener {
     }
 
     @Override
-    public void focusGained(FocusEvent fe) {
+    public void mousePressed(MouseEvent me) {
         for (JTextField tf : textfields) {
-            if (tf.getInputVerifier().verify(tf)) {
-                JOptionPane.showMessageDialog(null, "Test", "test", JOptionPane.OK_OPTION);
+            if (!tf.getInputVerifier().verify(tf)) {
+                JOptionPane.showMessageDialog(null, "Falsch ausgefüllt", "Bitte im richtigen Format ausfüllen", JOptionPane.OK_OPTION);
                 tf.requestFocus();
             }
         }
     }
-
-    @Override
-    public void focusLost(FocusEvent fe) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
 }
