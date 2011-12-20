@@ -98,6 +98,8 @@ public class Window extends javax.swing.JFrame {
         cbLand = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         mlRebsorte = new javax.swing.JList();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         panelWeinIrgendwas = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         mDatei = new javax.swing.JMenu();
@@ -161,6 +163,7 @@ public class Window extends javax.swing.JFrame {
         tfBestellnummer.setDocument(new DigetDocument());
         tfBestellnummer.getDocument().addDocumentListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(tfBestellnummer, gridBagConstraints);
@@ -184,6 +187,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(tfJahrgang, gridBagConstraints);
@@ -200,6 +204,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(tfName, gridBagConstraints);
@@ -224,6 +229,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         panelWeinAnlegen.add(rbFarbeWeiß, gridBagConstraints);
@@ -239,6 +245,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         panelWeinAnlegen.add(rbFarbeRot, gridBagConstraints);
@@ -254,6 +261,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
         panelWeinAnlegen.add(rbFarbeRose, gridBagConstraints);
@@ -285,6 +293,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(cbAnbaugebiet, gridBagConstraints);
@@ -304,6 +313,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(tfAlkoholgehalt, gridBagConstraints);
 
@@ -321,6 +331,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(tfLagerfaehigkeit, gridBagConstraints);
@@ -338,6 +349,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(cbFlaschengroese, gridBagConstraints);
@@ -357,6 +369,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 12;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(tfFlaschenpreis, gridBagConstraints);
 
@@ -367,10 +380,11 @@ public class Window extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 13;
+        gridBagConstraints.ipadx = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(30, 10, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(30, 10, 10, 30);
         panelWeinAnlegen.add(btnSpeichern, gridBagConstraints);
 
         btnAbbrechen.setText("Abbrechen");
@@ -382,8 +396,10 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(30, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(30, 30, 10, 10);
         panelWeinAnlegen.add(btnAbbrechen, gridBagConstraints);
 
         lblLand.setText("Anbaugebiet:");
@@ -405,6 +421,7 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(cbLand, gridBagConstraints);
@@ -415,9 +432,24 @@ public class Window extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelWeinAnlegen.add(jScrollPane1, gridBagConstraints);
+
+        jLabel1.setText("%");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        panelWeinAnlegen.add(jLabel1, gridBagConstraints);
+
+        jLabel2.setText("€");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        panelWeinAnlegen.add(jLabel2, gridBagConstraints);
 
         scrollPaneWeinAnlegen.setViewportView(panelWeinAnlegen);
 
@@ -431,7 +463,7 @@ public class Window extends javax.swing.JFrame {
         );
         panelWeinIrgendwasLayout.setVerticalGroup(
             panelWeinIrgendwasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
+            .addGap(0, 701, Short.MAX_VALUE)
         );
 
         ifWeinTabbedPanel.addTab("...", panelWeinIrgendwas);
@@ -439,7 +471,7 @@ public class Window extends javax.swing.JFrame {
         ifWein.getContentPane().add(ifWeinTabbedPanel);
 
         getContentPane().add(ifWein);
-        ifWein.setBounds(0, 0, 480, 660);
+        ifWein.setBounds(0, 0, 480, 760);
 
         mDatei.setMnemonic('D');
         mDatei.setText("Datei");
@@ -714,6 +746,8 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JInternalFrame ifKunde;
     private javax.swing.JInternalFrame ifWein;
     private javax.swing.JTabbedPane ifWeinTabbedPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlkoholgehalt;
     private javax.swing.JLabel lblAnbaugebiet;
