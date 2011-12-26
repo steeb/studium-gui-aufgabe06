@@ -107,7 +107,7 @@ public class Window extends javax.swing.JFrame {
         mlRebsorte = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        panelWeinIrgendwas = new javax.swing.JPanel();
+        weinLagerdauerPanel1 = new se.edu.gui.aufgabe03.WeinLagerdauerPanel();
         menuBar = new javax.swing.JMenuBar();
         mDatei = new javax.swing.JMenu();
         mDateiBeenden = new javax.swing.JMenuItem();
@@ -156,6 +156,7 @@ public class Window extends javax.swing.JFrame {
         ifWein.setMaximizable(true);
         ifWein.setResizable(true);
         ifWein.setTitle("Wein anlegen");
+        ifWein.setVisible(true);
         ifWein.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         panelWeinAnlegen.setLayout(new java.awt.GridBagLayout());
@@ -468,19 +469,7 @@ public class Window extends javax.swing.JFrame {
         scrollPaneWeinAnlegen.setViewportView(panelWeinAnlegen);
 
         ifWeinTabbedPanel.addTab("Wein anlegen", scrollPaneWeinAnlegen);
-
-        javax.swing.GroupLayout panelWeinIrgendwasLayout = new javax.swing.GroupLayout(panelWeinIrgendwas);
-        panelWeinIrgendwas.setLayout(panelWeinIrgendwasLayout);
-        panelWeinIrgendwasLayout.setHorizontalGroup(
-            panelWeinIrgendwasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
-        );
-        panelWeinIrgendwasLayout.setVerticalGroup(
-            panelWeinIrgendwasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 701, Short.MAX_VALUE)
-        );
-
-        ifWeinTabbedPanel.addTab("...", panelWeinIrgendwas);
+        ifWeinTabbedPanel.addTab("Weinlagerdauerdiagramm", weinLagerdauerPanel1);
 
         ifWein.getContentPane().add(ifWeinTabbedPanel);
 
@@ -790,7 +779,6 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JList mlRebsorte;
     private javax.swing.JPanel panelWeinAnlegen;
-    private javax.swing.JPanel panelWeinIrgendwas;
     private javax.swing.JRadioButton rbFarbeRose;
     private javax.swing.JRadioButton rbFarbeRot;
     private javax.swing.JRadioButton rbFarbeWeiß;
@@ -801,5 +789,6 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextField tfJahrgang;
     private javax.swing.JTextField tfLagerfaehigkeit;
     private javax.swing.JTextField tfName;
+    private se.edu.gui.aufgabe03.WeinLagerdauerPanel weinLagerdauerPanel1;
     // End of variables declaration//GEN-END:variables
 }

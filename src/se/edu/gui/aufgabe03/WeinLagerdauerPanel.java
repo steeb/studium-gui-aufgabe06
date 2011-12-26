@@ -4,19 +4,14 @@
  */
 
 /*
- * W.java
+ * WeinLagerdauerPanel.java
  *
- * Created on 14.11.2011, 09:53:29
+ * Created on 26.12.2011, 18:07:50
  */
 package se.edu.gui.aufgabe03;
 
 import java.awt.Color;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
-import javax.swing.JSpinner;
 import se.edu.gui.aufgabe03.diagramm.WeinBalkenDiagrammNurLegende;
 import se.edu.gui.aufgabe03.diagramm.WeinBalkenDiagrammOhneLegende;
 
@@ -24,38 +19,11 @@ import se.edu.gui.aufgabe03.diagramm.WeinBalkenDiagrammOhneLegende;
  *
  * @author steeb
  */
-public class WeinLagerdauer extends javax.swing.JFrame {
+public class WeinLagerdauerPanel extends javax.swing.JPanel {
 
-    /** Creates new form W */
-    public WeinLagerdauer() {
+    /** Creates new form WeinLagerdauerPanel */
+    public WeinLagerdauerPanel() {
         initComponents();
-//        this.addWindowFocusListener(new WindowAdapter() {
-//
-//            @Override
-//            public void windowGainedFocus(WindowEvent e) {
-//                lagerdauerEinstellerContainer.requestFocusInWindow();
-//                diagramm.requestFocusInWindow();
-//                legende.requestFocusInWindow();
-//            }
-//        });
-        ((JSpinner.DefaultEditor)(lagerdauerEinsteller.getEditor())).getTextField().addFocusListener(new FocusAdapter() {
-
-            @Override
-            public void focusGained(FocusEvent fe) {
-                ((JSpinner.DefaultEditor)(lagerdauerEinsteller.getEditor())).getTextField().setBackground(((JSpinner.DefaultEditor)(lagerdauerEinsteller.getEditor())).getTextField().getBackground().darker());
-            }
-
-            @Override
-            public void focusLost(FocusEvent fe) {
-                ((JSpinner.DefaultEditor)(lagerdauerEinsteller.getEditor())).getTextField().setBackground(((JSpinner.DefaultEditor)(lagerdauerEinsteller.getEditor())).getTextField().getBackground().brighter());
-            }
-            
-        });
-        this.addKeyListener(new PlusMinusEvents());
-        ((WeinBalkenDiagrammOhneLegende)this.diagramm).registerJSpinner(this.lagerdauerEinsteller);
-        ((WeinBalkenDiagrammOhneLegende)this.diagramm).setLagerdauer(50);
-        ((WeinBalkenDiagrammOhneLegende)this.diagramm).setJahrgang(2000);
-        ((WeinBalkenDiagrammOhneLegende)this.diagramm).updateJSpinner();
     }
 
     /** This method is called from within the constructor to
@@ -74,7 +42,7 @@ public class WeinLagerdauer extends javax.swing.JFrame {
         diagramm = new WeinBalkenDiagrammOhneLegende(2000, 15);
         legende = new WeinBalkenDiagrammNurLegende();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLayout(new java.awt.BorderLayout());
 
         lagerdauerEinstellerContainer.setBackground(new java.awt.Color(204, 204, 204));
         lagerdauerEinstellerContainer.setLayout(new javax.swing.BoxLayout(lagerdauerEinstellerContainer, javax.swing.BoxLayout.LINE_AXIS));
@@ -88,17 +56,17 @@ public class WeinLagerdauer extends javax.swing.JFrame {
         //((NumberFormatter)((NumberEditor)this.lagerdauerEinsteller.getEditor()).getTextField().getFormatter()).setAllowsInvalid(false);
         lagerdauerEinsteller.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                aenderLagerdauerViaSpinner(evt);
+                lagerdauerEinstelleraenderLagerdauerViaSpinner(evt);
             }
         });
         lagerdauerEinsteller.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                spinnerGetFocus(evt);
+                lagerdauerEinstellerspinnerGetFocus(evt);
             }
         });
         lagerdauerEinstellerContainer.add(lagerdauerEinsteller);
 
-        getContentPane().add(lagerdauerEinstellerContainer, java.awt.BorderLayout.PAGE_START);
+        add(lagerdauerEinstellerContainer, java.awt.BorderLayout.PAGE_START);
 
         diagrammContainer.setLayout(new javax.swing.BoxLayout(diagrammContainer, javax.swing.BoxLayout.PAGE_AXIS));
 
@@ -111,10 +79,10 @@ public class WeinLagerdauer extends javax.swing.JFrame {
         });
         diagramm.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                elementGetFocus(evt);
+                diagrammelementGetFocus(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                elementLostFocus(evt);
+                diagrammelementLostFocus(evt);
             }
         });
 
@@ -126,7 +94,7 @@ public class WeinLagerdauer extends javax.swing.JFrame {
         );
         diagrammLayout.setVerticalGroup(
             diagrammLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
+            .addGap(0, 139, Short.MAX_VALUE)
         );
 
         diagrammContainer.add(diagramm);
@@ -139,10 +107,10 @@ public class WeinLagerdauer extends javax.swing.JFrame {
         });
         legende.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                elementGetFocus(evt);
+                legendeelementGetFocus(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                elementLostFocus(evt);
+                legendeelementLostFocus(evt);
             }
         });
 
@@ -154,62 +122,46 @@ public class WeinLagerdauer extends javax.swing.JFrame {
         );
         legendeLayout.setVerticalGroup(
             legendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
+            .addGap(0, 139, Short.MAX_VALUE)
         );
 
         diagrammContainer.add(legende);
 
-        getContentPane().add(diagrammContainer, java.awt.BorderLayout.CENTER);
-
-        pack();
+        add(diagrammContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void elementGetFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_elementGetFocus
-        evt.getComponent().setBackground(evt.getComponent().getBackground().darker());
-    }//GEN-LAST:event_elementGetFocus
+    private void lagerdauerEinstelleraenderLagerdauerViaSpinner(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_lagerdauerEinstelleraenderLagerdauerViaSpinner
 
-    private void elementLostFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_elementLostFocus
-        evt.getComponent().setBackground(evt.getComponent().getBackground().brighter());
-    }//GEN-LAST:event_elementLostFocus
+        int eingabe = Integer.parseInt(this.lagerdauerEinsteller.getValue().toString());         if (eingabe > 50) {             eingabe = 50;             this.lagerdauerEinsteller.setValue(new Integer(eingabe));         } else if (eingabe < 1) {             eingabe = 1;             this.lagerdauerEinsteller.setValue(new Integer(eingabe));         }         ((WeinBalkenDiagrammOhneLegende) this.diagramm).setLagerdauer(Integer.parseInt(this.lagerdauerEinsteller.getValue().toString()));     }//GEN-LAST:event_lagerdauerEinstelleraenderLagerdauerViaSpinner
 
-    private void spinnerGetFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spinnerGetFocus
-        this.lagerdauerEinstellerContainer.setBorder(BorderFactory.createLineBorder(Color.green));
-    }//GEN-LAST:event_spinnerGetFocus
+    private void lagerdauerEinstellerspinnerGetFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lagerdauerEinstellerspinnerGetFocus
 
-    private void aenderLagerdauerViaSpinner(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_aenderLagerdauerViaSpinner
-        int eingabe = Integer.parseInt(this.lagerdauerEinsteller.getValue().toString());
-        if (eingabe > 50) {
-            eingabe = 50;
-            this.lagerdauerEinsteller.setValue(new Integer(eingabe));
-        } else if (eingabe < 1) {
-            eingabe = 1;
-            this.lagerdauerEinsteller.setValue(new Integer(eingabe));
-        }
-        ((WeinBalkenDiagrammOhneLegende)this.diagramm).setLagerdauer(Integer.parseInt(this.lagerdauerEinsteller.getValue().toString()));
-    }//GEN-LAST:event_aenderLagerdauerViaSpinner
+        this.lagerdauerEinstellerContainer.setBorder(BorderFactory.createLineBorder(Color.green));     }//GEN-LAST:event_lagerdauerEinstellerspinnerGetFocus
 
     private void diagrammMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagrammMouseClicked
-        diagramm.requestFocus();
-    }//GEN-LAST:event_diagrammMouseClicked
+
+        diagramm.requestFocus();     }//GEN-LAST:event_diagrammMouseClicked
+
+    private void diagrammelementGetFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_diagrammelementGetFocus
+
+        evt.getComponent().setBackground(evt.getComponent().getBackground().darker());     }//GEN-LAST:event_diagrammelementGetFocus
+
+    private void diagrammelementLostFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_diagrammelementLostFocus
+
+        evt.getComponent().setBackground(evt.getComponent().getBackground().brighter());     }//GEN-LAST:event_diagrammelementLostFocus
 
     private void legendeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_legendeMouseClicked
-        legende.requestFocus();
-    }//GEN-LAST:event_legendeMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+        legende.requestFocus();     }//GEN-LAST:event_legendeMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+    private void legendeelementGetFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_legendeelementGetFocus
 
-            @Override
-            public void run() {
-                new WeinLagerdauer().setVisible(true);
-            }
-        });
-    }
+        evt.getComponent().setBackground(evt.getComponent().getBackground().darker());     }//GEN-LAST:event_legendeelementGetFocus
+
+    private void legendeelementLostFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_legendeelementLostFocus
+
+        evt.getComponent().setBackground(evt.getComponent().getBackground().brighter());     }//GEN-LAST:event_legendeelementLostFocus
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel diagramm;
     private javax.swing.JPanel diagrammContainer;
@@ -218,26 +170,4 @@ public class WeinLagerdauer extends javax.swing.JFrame {
     private javax.swing.JLabel lagerdauerEinstellerLabel;
     private javax.swing.JPanel legende;
     // End of variables declaration//GEN-END:variables
-
-    class PlusMinusEvents extends KeyAdapter {
-
-        @Override
-        public void keyPressed(KeyEvent ke) {
-            super.keyPressed(ke);
-            System.out.println("key pressed");
-            if (ke.getKeyChar() == KeyEvent.VK_PLUS)
-                if (diagramm.hasFocus())
-                    ((WeinBalkenDiagrammOhneLegende)diagramm).incLagerdauer();
-                else if (legende.hasFocus())
-                    legende.setVisible(false);
-            else if (ke.getKeyChar() == KeyEvent.VK_MINUS)
-                if (diagramm.hasFocus())
-                    ((WeinBalkenDiagrammOhneLegende)diagramm).decLagerdauer();
-                else if (legende.hasFocus())
-                    legende.setVisible(true);
-        }
-        
-    }
-
 }
-
