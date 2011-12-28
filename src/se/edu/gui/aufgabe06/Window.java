@@ -159,7 +159,6 @@ public class Window extends javax.swing.JFrame {
         ifWein.setMaximizable(true);
         ifWein.setResizable(true);
         ifWein.setTitle("Wein anlegen");
-        ifWein.setVisible(true);
         ifWein.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         panelWeinAnlegen.setLayout(new java.awt.GridBagLayout());
