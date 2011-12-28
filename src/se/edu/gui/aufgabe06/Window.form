@@ -275,7 +275,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="verifyContent"/>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="verifyContentAndResetDiagram"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="tfJahrgang.getDocument().addDocumentListener(aenderung);"/>
@@ -460,6 +460,9 @@
                           <Connection code="new LagerfaehigkeitVerifyer()" type="code"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfLagerfaehigkeitFocusLost"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="tfLagerfaehigkeit.getDocument().addDocumentListener(aenderung);"/>
                       </AuxValues>

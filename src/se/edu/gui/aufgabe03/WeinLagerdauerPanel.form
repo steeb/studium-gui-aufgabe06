@@ -85,7 +85,7 @@
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="diagrammelementLostFocus"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new WeinBalkenDiagrammOhneLegende(2000, 15)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new WeinBalkenDiagrammOhneLegende()"/>
           </AuxValues>
 
           <Layout>

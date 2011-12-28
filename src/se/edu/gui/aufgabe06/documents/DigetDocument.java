@@ -16,7 +16,7 @@ public class DigetDocument extends PlainDocument{
 
     @Override
     public void insertString(int i, String string, AttributeSet as) throws BadLocationException {
-        if (string.matches("\\d"))
+        if (string.matches("\\d*"))
             super.insertString(i, string, as);
     }
     

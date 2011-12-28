@@ -12,6 +12,7 @@ package se.edu.gui.aufgabe03;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JSpinner;
 import se.edu.gui.aufgabe03.diagramm.WeinBalkenDiagrammNurLegende;
 import se.edu.gui.aufgabe03.diagramm.WeinBalkenDiagrammOhneLegende;
 
@@ -24,6 +25,26 @@ public class WeinLagerdauerPanel extends javax.swing.JPanel {
     /** Creates new form WeinLagerdauerPanel */
     public WeinLagerdauerPanel() {
         initComponents();
+    }
+    
+    public void setLagerdauer (int ld) {
+        ((WeinBalkenDiagrammOhneLegende)this.diagramm).setLagerdauer(ld);
+    }
+    
+    public void setJahrgang (int jg) {
+        ((WeinBalkenDiagrammOhneLegende)this.diagramm).setJahrgang(jg);
+    }
+    
+    public JSpinner getLagerdauerEinsteller () {
+        return lagerdauerEinsteller;
+    }
+    
+    public int getLagerdauer () {
+        return ((WeinBalkenDiagrammOhneLegende)this.diagramm).getLagerdauer();
+    }
+    
+    public void updateJSpinner () {
+        ((WeinBalkenDiagrammOhneLegende)this.diagramm).updateJSpinner();
     }
 
     /** This method is called from within the constructor to
@@ -39,7 +60,7 @@ public class WeinLagerdauerPanel extends javax.swing.JPanel {
         lagerdauerEinstellerLabel = new javax.swing.JLabel();
         lagerdauerEinsteller = new javax.swing.JSpinner();
         diagrammContainer = new javax.swing.JPanel();
-        diagramm = new WeinBalkenDiagrammOhneLegende(2000, 15);
+        diagramm = new WeinBalkenDiagrammOhneLegende();
         legende = new WeinBalkenDiagrammNurLegende();
 
         setLayout(new java.awt.BorderLayout());
@@ -90,7 +111,7 @@ public class WeinLagerdauerPanel extends javax.swing.JPanel {
         diagramm.setLayout(diagrammLayout);
         diagrammLayout.setHorizontalGroup(
             diagrammLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 902, Short.MAX_VALUE)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
         diagrammLayout.setVerticalGroup(
             diagrammLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +139,7 @@ public class WeinLagerdauerPanel extends javax.swing.JPanel {
         legende.setLayout(legendeLayout);
         legendeLayout.setHorizontalGroup(
             legendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 904, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         legendeLayout.setVerticalGroup(
             legendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

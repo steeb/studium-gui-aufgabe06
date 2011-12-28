@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.ChangeEvent;
 import se.edu.gui.aufgabe06.documents.AlkgehaltDocument;
 import se.edu.gui.aufgabe06.documents.DigetDocument;
 import se.edu.gui.aufgabe06.listener.ChangeListener;
@@ -60,6 +61,7 @@ public class Window extends javax.swing.JFrame {
         switchComponentenVerifyer.addTextfield(tfLagerfaehigkeit);
         switchComponentenVerifyer.addTextfield(tfFlaschenpreis);
         this.setDefaultCloseOperation(Window.EXIT_ON_CLOSE);
+        weinLagerdauerPanel1.getLagerdauerEinsteller().addChangeListener(new UpdateForm());
     }
 
     /** This method is called from within the constructor to
@@ -187,7 +189,7 @@ public class Window extends javax.swing.JFrame {
         tfJahrgang.setInputVerifier(new JahrgangVerifyer());
         tfJahrgang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                verifyContent(evt);
+                verifyContentAndResetDiagram(evt);
             }
         });
         tfJahrgang.getDocument().addDocumentListener(aenderung);
@@ -339,6 +341,11 @@ public class Window extends javax.swing.JFrame {
 
         tfLagerfaehigkeit.setDocument(new DigetDocument());
         tfLagerfaehigkeit.setInputVerifier(new LagerfaehigkeitVerifyer());
+        tfLagerfaehigkeit.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfLagerfaehigkeitFocusLost(evt);
+            }
+        });
         tfLagerfaehigkeit.getDocument().addDocumentListener(aenderung);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -589,11 +596,11 @@ public class Window extends javax.swing.JFrame {
             System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
-    private void verifyContent(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_verifyContent
-        if (!((JTextField)(evt.getSource())).getInputVerifier().verify(((JTextField)(evt.getSource())))) {
-            System.out.println("mööp");
+    private void verifyContentAndResetDiagram(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_verifyContentAndResetDiagram
+        if (((JTextField)(evt.getSource())).getInputVerifier().verify(((JTextField)(evt.getSource())))) {
+            weinLagerdauerPanel1.setJahrgang(Integer.parseInt(((JTextField)evt.getSource()).getText()));
         }
-    }//GEN-LAST:event_verifyContent
+    }//GEN-LAST:event_verifyContentAndResetDiagram
 
     private void btnAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbbrechenActionPerformed
         if(aenderung.hasChanged())
@@ -675,6 +682,13 @@ public class Window extends javax.swing.JFrame {
         }
         cbAnbaugebiet.setModel(cbmGebiet);
     }//GEN-LAST:event_cbLandItemStateChanged
+
+    private void tfLagerfaehigkeitFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfLagerfaehigkeitFocusLost
+        if (!tfJahrgang.getText().equals("") && !tfLagerfaehigkeit.equals("")) {
+            weinLagerdauerPanel1.setLagerdauer(Integer.parseInt(tfLagerfaehigkeit.getText()) - Integer.parseInt(tfJahrgang.getText()));
+            weinLagerdauerPanel1.updateJSpinner();
+        }
+    }//GEN-LAST:event_tfLagerfaehigkeitFocusLost
 
     private void save(){
         String tmp = "";
@@ -791,4 +805,16 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextField tfName;
     private se.edu.gui.aufgabe03.WeinLagerdauerPanel weinLagerdauerPanel1;
     // End of variables declaration//GEN-END:variables
+
+    class UpdateForm implements javax.swing.event.ChangeListener {
+
+        @Override
+        public void stateChanged(ChangeEvent ce) {
+            int lagerfaehigkeit = Integer.parseInt(tfJahrgang.getText()) + weinLagerdauerPanel1.getLagerdauer();
+            System.out.println(lagerfaehigkeit);
+            tfLagerfaehigkeit.setText(lagerfaehigkeit + "");
+        }
+        
+    }
+    
 }

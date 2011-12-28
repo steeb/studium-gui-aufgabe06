@@ -41,8 +41,8 @@ public class WeinBalkenDiagrammOhneLegende extends JPanel {
         ausserhalb
     }
     Elemente mouseIn = Elemente.ausserhalb;
-    int jahrgang;
-    int lagerdauer;
+    int jahrgang = -1;
+    int lagerdauer = 1;
     int balkenHoehe;
     int balkenBreite, balkenBreiteZuFrueh, balkenBreiteSteigertSich,
             balkenBreiteOptimal, balkenBreiteUeberlagert;
@@ -56,15 +56,16 @@ public class WeinBalkenDiagrammOhneLegende extends JPanel {
     Color colorUeberlagert = COLOR_UEBERLAGERT;
     JSpinner js;
 
-    public WeinBalkenDiagrammOhneLegende(int jahrgang, int lagerdauer) {
+    public WeinBalkenDiagrammOhneLegende() {
         super();
         this.addMouseMotionListener(new BalkenHighlighten());
         this.addMouseListener(new InfosAussgeben());
         this.addKeyListener(new PlusMinusEvents());
-        this.setJahrgang(jahrgang);
-        this.setLagerdauer(lagerdauer);
+        //this.setJahrgang(jahrgang);
+        //this.setLagerdauer(lagerdauer);
         this.setBackground(Color.white);
         this.setFocusable(true);
+        
 
     }
 
@@ -73,7 +74,11 @@ public class WeinBalkenDiagrammOhneLegende extends JPanel {
     }
     
     public void updateJSpinner() {
-        js.setValue(new Integer(lagerdauer));
+        System.out.println("JS: " + lagerdauer);
+        try {
+            js.setValue(new Integer(lagerdauer));
+        } catch (NullPointerException e) {
+        }
     }
 
     @Override
@@ -83,6 +88,7 @@ public class WeinBalkenDiagrammOhneLegende extends JPanel {
 
     public final void setJahrgang(int jahrgang) {
         this.jahrgang = jahrgang + 1;
+        this.repaint();
     }
 
     public final void setLagerdauer(int lagerdauer) {
@@ -118,6 +124,11 @@ public class WeinBalkenDiagrammOhneLegende extends JPanel {
         grphcs2d.setStroke(new BasicStroke(1));
 
         fensterBreite = this.getWidth() * 80 / 100;
+        
+        if (this.jahrgang == -1 && this.lagerdauer == 1) {
+            grphcs2d.drawString("Nicht genug Daten", fensterBreite/2 - 20, 20);
+            return;
+        }
 
         balkenHoehe = this.getHeight() * 80 / 100 - schriftHoehe;
         balkenBreite = fensterBreite / (this.lagerdauer + 1);
@@ -180,6 +191,8 @@ public class WeinBalkenDiagrammOhneLegende extends JPanel {
         grphcs2d.draw(new Rectangle(balkenBreiteUeberlagert, balkenHoehe));
         grphcs2d.drawString("" + jahrUeberlagert, 0,
                 balkenHoehe + schriftHoehe);
+        
+        updateJSpinner();
     }
 
     class BalkenHighlighten extends MouseMotionAdapter {
