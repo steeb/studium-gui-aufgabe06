@@ -110,6 +110,7 @@ public class Window extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         weinLagerdauerPanel1 = new se.edu.gui.aufgabe03.WeinLagerdauerPanel();
+        preisumrechnerPanel1 = new se.edu.gui.aufgabe04.PreisumrechnerPanel();
         menuBar = new javax.swing.JMenuBar();
         mDatei = new javax.swing.JMenu();
         mDateiBeenden = new javax.swing.JMenuItem();
@@ -477,6 +478,7 @@ public class Window extends javax.swing.JFrame {
 
         ifWeinTabbedPanel.addTab("Wein anlegen", scrollPaneWeinAnlegen);
         ifWeinTabbedPanel.addTab("Weinlagerdauerdiagramm", weinLagerdauerPanel1);
+        ifWeinTabbedPanel.addTab("Preisumrechner", preisumrechnerPanel1);
 
         ifWein.getContentPane().add(ifWeinTabbedPanel);
 
@@ -793,6 +795,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JList mlRebsorte;
     private javax.swing.JPanel panelWeinAnlegen;
+    private se.edu.gui.aufgabe04.PreisumrechnerPanel preisumrechnerPanel1;
     private javax.swing.JRadioButton rbFarbeRose;
     private javax.swing.JRadioButton rbFarbeRot;
     private javax.swing.JRadioButton rbFarbeWeiß;

@@ -647,6 +647,15 @@
                 </Constraint>
               </Constraints>
             </Component>
+            <Component class="se.edu.gui.aufgabe04.PreisumrechnerPanel" name="preisumrechnerPanel1">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Preisumrechner">
+                    <Property name="tabTitle" type="java.lang.String" value="Preisumrechner"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
